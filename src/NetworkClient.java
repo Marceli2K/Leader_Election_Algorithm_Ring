@@ -14,7 +14,8 @@ public class NetworkClient {
     public static void main(String args[]) throws IOException{
         List<String> listaparametrow = new ArrayList();
 
-        InetAddress address=InetAddress.getLocalHost();
+//        InetAddress address=InetAddress.getLocalHost();
+        InetAddress address = InetAddress.getByName("192.168.56.1");
         Socket s1=null;
         String line=null;
         BufferedReader br=null;
@@ -22,7 +23,7 @@ public class NetworkClient {
         PrintWriter os=null;
 
         try {
-            s1=new Socket(address, 4445); // You can use static final constant PORT_NUM
+            s1=new Socket("192.168.56.1", 4445); // You can use static final constant PORT_NUM
             br= new BufferedReader(new InputStreamReader(System.in));
             is=new BufferedReader(new InputStreamReader(s1.getInputStream()));
             os= new PrintWriter(s1.getOutputStream());
