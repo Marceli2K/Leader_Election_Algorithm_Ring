@@ -5,7 +5,9 @@
 
 3. Sekcja odpowiedzialana za wyniki działania algorytmu na każdej stacji, ocena działania, wyniki pokazujące że algorytm działa poprawnie
 
-4. Tak napisać tę aplikację i tak testować aby była rzeczyswiście uruchomiona i testowana w środowisku rozproszonym. (na oddawaniu projektu). Obiekty fizycznie rozproszone np 2-3 komputery a ponadto maszyny wirtualne. Ponieważ w środowisku lokalnym pojedynczej stacji może działać a przy kilku stajach może nie działać. FIZYCZNIE ROZPROSZONE ŚRODOWISKO.
+4. Tak napisać tę aplikację i tak testować aby była rzeczyswiście uruchomiona i testowana w środowisku rozproszonym. (na oddawaniu projektu).
+ Obiekty fizycznie rozproszone np 2-3 komputery a ponadto maszyny wirtualne. Ponieważ w środowisku lokalnym pojedynczej stacji może działać a przy kilku stajach może nie działać.
+ FIZYCZNIE ROZPROSZONE ŚRODOWISKO.
 
 5. Do 29 marca mamy przesłać informacje w postaci maila, jaka technologia i jaki język programowania w GUI. Natomiast mechanizmy komunikacji sieciowej otrzymamy od prowadzącego.
 
@@ -13,7 +15,10 @@
 
 7. Docelowo rozliczenie najlepiej nie zdalne tj. prezentacja fizyczna w sali laboratoryjnej.
 
-8. Każdy uczestnik algorytmu pewnie bedzie musiał rozmawiac z pozostałymi aplikacjiami w algorytmie. Wiec zaptrojektuj liste uczestników algorytmu. Tu rozpreoszenie moze byc scentralizowane, można zbudować dodatkowa aplikacje, rejestratora uczestników algorytmu, dystrybutora listy uczestników. Aby kazdy user miał liste pozostałych uzytkowników. Ale nie można recznie wpisywac listy uzytkowników, ale kazdy user musi sie rejestrowac do dystrybutora i w ten sposob pobierac reszte userów. 
+8. Każdy uczestnik algorytmu pewnie bedzie musiał rozmawiac z pozostałymi aplikacjiami w algorytmie. Wiec zaptrojektuj liste uczestników algorytmu.
+Tu rozpreoszenie moze byc scentralizowane, można zbudować dodatkowa aplikacje, rejestratora uczestników algorytmu, dystrybutora listy uczestników.
+Aby kazdy user miał liste pozostałych uzytkowników.
+Ale nie można recznie wpisywac listy uzytkowników, ale kazdy user musi sie rejestrowac do dystrybutora i w ten sposob pobierac reszte userów.
 
 9. Ocenie podlega interfejs, implementacja, ustanawianie danych wejsciowych do przeprowadzenia algorytmu.
 

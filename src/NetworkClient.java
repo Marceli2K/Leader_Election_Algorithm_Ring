@@ -15,7 +15,7 @@ public class NetworkClient {
         List<String> listaparametrow = new ArrayList();
 
 //        InetAddress address=InetAddress.getLocalHost();
-        InetAddress address = InetAddress.getByName("192.168.56.1");
+        InetAddress address = InetAddress.getByName("192.168.0.100");
         Socket s1=null;
         String line=null;
         BufferedReader br=null;
