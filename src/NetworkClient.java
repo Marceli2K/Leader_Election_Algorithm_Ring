@@ -1,67 +1,90 @@
 // A simple Client Server Protocol .. Client for Echo Server
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class NetworkClient {
 
-    public static void main(String args[]) throws IOException{
-        List<String> listaparametrow = new ArrayList();
+    private static InetAddress neighbourAddress;
 
-//        InetAddress address=InetAddress.getLocalHost();
-        InetAddress address = InetAddress.getByName("192.168.0.100");
-        Socket s1=null;
-        String line=null;
-        BufferedReader br=null;
-        BufferedReader is=null;
-        PrintWriter os=null;
+    NetworkClient() {
+        String response = null;
+    }
 
-        try {
-            s1=new Socket("192.168.56.1", 4445); // You can use static final constant PORT_NUM
-            br= new BufferedReader(new InputStreamReader(System.in));
-            is=new BufferedReader(new InputStreamReader(s1.getInputStream()));
-            os= new PrintWriter(s1.getOutputStream());
-        }
-        catch (IOException e){
-            e.printStackTrace();
-            System.err.print("IO Exception");
-        }
+    public static void main(String args[]) throws IOException {
+        boolean running = true;
+        while (running) {
+            System.out.println("XXXXx1");
 
-        System.out.println("Client Address : "+address);
-        System.out.println("Enter Data to echo Server ( Enter QUIT to end):");
+            NetworkClient3 client = new NetworkClient3();
+            System.out.println("XXXXx2");
+            ClientInClient clientInClientObject = new ClientInClient(InetAddress.getLocalHost());
+            System.out.println("XXXXx3");
+            Thread s = new Thread(clientInClientObject);
+            s.start();
+            System.out.println("XXXXx4");
 
-        String response=null;
-        try{
-            line=br.readLine();
-            while(line.compareTo("QUIT")!=0){
-                os.println(line);
-                os.flush();
-                response=is.readLine();
-                System.out.println("Server Response : "+response);
-                listaparametrow.add(response);
-                line=br.readLine();
 
+            System.out.println("XXXXx5");
+
+            if (validIP(clientInClientObject.response)) {
+
+                // TWORZENIE WATKU SERWERA W KLIENCEI, DO ODBIERANIA WIADOMOSCI OD INNYCH KLIENTOW
+                ServerInClient serverInClientobject = new ServerInClient();
+                System.out.println("XXXXx3");
+                Thread serverinClientThread = new Thread(serverInClientobject);
+                serverinClientThread.start();
+
+                // TWORZENIE WATKU KLIENTA W KLIENCIE DO WYMIANY KOMUNIKATOW Z INNYMI KLIENTAMI
+                neighbourAddress = InetAddress.getByName(clientInClientObject.response);
+                System.out.println(clientInClientObject.response + "XXXXx");
+                ClientInClient clientInClientObject2 = new ClientInClient(neighbourAddress);
+                System.out.println("XXXXx3");
+                Thread s2 = new Thread(clientInClientObject2);
+                s2.start();
+                System.out.println("XXXXXXXXXXXDDDDDDDDDDDDDd");
             }
-
-
-
         }
-        catch(IOException e){
-            e.printStackTrace();
-            System.out.println("Socket read Error");
-        }
-        finally{
 
-            is.close();os.close();br.close();s1.close();
-            System.out.println("Connection Closed");
-
-        }
 
     }
+
+    public static boolean validIP(String ip) {
+        try {
+            if (ip == null || ip.isEmpty()) {
+                return false;
+            }
+
+            String[] parts = ip.split("\\.");
+            if (parts.length != 4) {
+                return false;
+            }
+
+            for (String s : parts) {
+                int i = Integer.parseInt(s);
+                if ((i < 0) || (i > 255)) {
+                    return false;
+                }
+            }
+            if (ip.endsWith(".")) {
+                return false;
+            }
+
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+
 }
+
